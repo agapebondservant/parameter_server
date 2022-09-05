@@ -1,0 +1,12 @@
+accelerator:
+  displayName: Machine Learning Pipeline Wrapper
+  description: Abstraction for a step in a generic ML Pipeline, including inputs and outputs supplied by an underlying feature store 
+  iconUrl: https://cdn.worldvectorlogo.com/logos/python-3.svg
+  tags:
+    - "ML"
+    - "AI"
+    - "machinelearning"
+    - "datascience"
+    - "MLOps"
+    - "artificialintelligence"
+    - "python"
