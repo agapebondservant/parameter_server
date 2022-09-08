@@ -1,0 +1,38 @@
+apiVersion: gemfire.tanzu.vmware.com/v1
+kind: GemFireCluster
+metadata:
+  name: gemfire1
+spec:
+  image: oawofolu/gemfire-k8s:1.0.3
+  servers:
+    overrides:
+      gemfireProperties:
+        start-dev-rest-api: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gemfire1-dev-api
+spec:
+  selector:
+    app: gemfire1-server
+  ports:
+    - name: rest-api
+      port: 7070
+      targetPort: 7070
+  type: LoadBalancer
+
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: gemfire-api-httpproxy
+spec:
+  routes:
+    - conditions:
+        - prefix: /
+      services:
+        - name: gemfire1-dev-api
+          port: 7070
+  virtualhost:
+    fqdn: gemfire1-dev-api.tanzudatatap.ml
