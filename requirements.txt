@@ -1,2 +1,3 @@
 ray[default]
 lz4
+pyyaml

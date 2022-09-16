@@ -82,10 +82,10 @@ spec:
             resources:
               limits:
                 cpu: "1"
-                memory: "2G"
+                memory: "8G"
               requests:
                 cpu: "500m"
-                memory: "2G"
+                memory: "8G"
   workerGroupSpecs:
     # the pod replicas in this group typed worker
     - replicas: 1
@@ -131,7 +131,7 @@ spec:
               resources:
                 limits:
                   cpu: "1"
-                  memory: "1G"
+                  memory: "4G"
                 requests:
                   cpu: "500m"
-                  memory: "1G"
+                  memory: "4G"

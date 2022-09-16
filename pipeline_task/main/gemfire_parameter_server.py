@@ -2,15 +2,15 @@ import requests
 import logging
 import pyarrow
 import traceback
-from pipeline_task.backend import Backend
-from pipeline_task import config
+from pipeline_task.main.parameter_server import ParameterServer
+from pipeline_task.main import config
 
 
-class GemfireBackend(Backend):
+class GemfireParameterServer(ParameterServer):
     def __init__(self,
                  region,
-                 host=config.gemfire_backend_address):
-        super(GemfireBackend, self).__init__(host)
+                 host=config.gemfire_parameter_server_address):
+        super(GemfireParameterServer, self).__init__(host)
         self.region = region
 
     def get(self, key):

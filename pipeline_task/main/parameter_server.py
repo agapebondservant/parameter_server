@@ -6,7 +6,7 @@ import logging
 import lz4
 
 
-class Backend:
+class ParameterServer:
     def __init__(self,
                  host):
         self.host = host
@@ -23,7 +23,7 @@ class Backend:
     def finalize(self):
         pass
 
-    def serialize(self, value: dict):
+    def serialize(self, value):
         value = {k: (self.serialize_lob(v)
                  if inspect.getmodule(v) and re.search('(pandas|numpy)', inspect.getmodule(v).__name__)
                  else v)

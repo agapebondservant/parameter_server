@@ -1,0 +1,9 @@
+method: pipeline_task.tests.samples.test_method
+inputs:
+  - person
+  - place
+outputs:
+  - person
+  - place
+  - thing
+  - df

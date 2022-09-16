@@ -11,4 +11,4 @@ spec:
         - name: raycluster-autoscaler-head-svc
           port: 8265
   virtualhost:
-    fqdn: ray.${RAY_BASE_URL}
+    fqdn: ray.tanzudatadev.ml
