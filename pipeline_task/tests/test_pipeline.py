@@ -1,8 +1,8 @@
 from pipeline_task.main.pipeline_task import PipelineTask
 import joblib
 import logging
-from pipeline_task.main.ray_environment import RayEnvironment
-from pipeline_task.main.ray_parameter_server import RayParameterServer
+from pipeline_task.main.environments.ray_environment import RayEnvironment
+from pipeline_task.main.parameter_servers.ray_parameter_server import RayParameterServer
 import os
 from os import listdir
 

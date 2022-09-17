@@ -1,9 +1,6 @@
 import requests
-import logging
-import pyarrow
-import traceback
-from pipeline_task.main.parameter_server import ParameterServer
-from pipeline_task.main import config
+from pipeline_task.main.parameter_servers.parameter_server import ParameterServer
+from pipeline_task.main.config import config
 
 
 class GemfireParameterServer(ParameterServer):

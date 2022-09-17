@@ -1,7 +1,7 @@
 import ray
 from pipeline_task.main.pipeline_task import PipelineTask
-from pipeline_task.main.environment import Environment
-from pipeline_task.main import config
+from pipeline_task.main.environments.environment import Environment
+from pipeline_task.main.config import config
 
 
 class RayEnvironment(Environment):
