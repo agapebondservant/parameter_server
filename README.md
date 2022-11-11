@@ -53,3 +53,8 @@ kubectl apply -f resources/gemfire-cluster.yaml -n gemfire-system
 ```
 
 ```
+
+* Run tests:
+```
+python -m pipeline_task.tests.test_pipeline
+```

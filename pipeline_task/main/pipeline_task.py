@@ -8,8 +8,8 @@ class PipelineTask:
     def __init__(self, params=None):
         self.parameters = params or {}
 
-    def invoke(self, mapping_file):
-        self.map_attributes(mapping_file)
+    def invoke(self, mapping_file=None, func=None, input_args=None, input_kwargs=None, output_argnames=None):
+        self.map_attributes(mapping_file, func, input_args, input_kwargs, output_argnames)
 
         sig = inspect.signature(self.func)
         self.parameters = {**self.parameters, **sig.bind(*self.input_args, **self.input_kwargs).arguments}
@@ -21,12 +21,12 @@ class PipelineTask:
         self.parameters = {**self.parameters, **dict(zip(outputs, return_value))}
         return self.get_parameters()
 
-    def map_attributes(self, mapping_file):
-        mapping = task_mapper.from_yaml(mapping_file, self.parameters)
-        self.func = mapping.get('method')
-        self.input_args = mapping.get('input_args')
-        self.input_kwargs = mapping.get('input_kwargs')
-        self.output_argnames = mapping.get('outputs')
+    def map_attributes(self, mapping_file=None, func=None, input_args=None, input_kwargs=None, output_argnames=None):
+        mapping = task_mapper.from_yaml(mapping_file, self.parameters) if mapping_file else None
+        self.func = mapping.get('method') if mapping else func
+        self.input_args = mapping.get('input_args') if mapping else input_args
+        self.input_kwargs = mapping.get('input_kwargs') if mapping else input_kwargs
+        self.output_argnames = mapping.get('outputs') if mapping else output_argnames
         print(f"{self.func} {self.input_kwargs} {self.input_args} {self.output_argnames}")
 
     def get_parameters(self):

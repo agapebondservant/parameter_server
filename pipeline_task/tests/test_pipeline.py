@@ -8,7 +8,7 @@ from os import listdir
 
 logging.getLogger().setLevel(logging.INFO)
 
-environment = RayEnvironment(params={'person': 'john', 'place': 'egypt', 'person2': 'mary'},
+environment = RayEnvironment(params={},
                              runnable_class=PipelineTask)
 parameter_server = RayParameterServer()
 yaml_dir = 'pipeline_task/tests/data'
