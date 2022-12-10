@@ -1,4 +1,5 @@
-ray[default]
+# ray[default]
+ray[default]==2.1.0
 lz4
 pyyaml
 modin[ray]

@@ -13,14 +13,16 @@ OR
 ```
 kubectl create -k "github.com/ray-project/kuberay/ray-operator/config/default?ref=v0.3.0&timeout=90s"
 kubectl create ns ray
-kubectl apply -f resources/ray-cluster.yaml -n ray
+# kubectl apply -f resources/ray-cluster.yaml -n ray
+kubectl apply -f resources/ray-cluster-2.1.0.yaml -n ray
 watch kubectl get pods --selector=ray.io/cluster=raycluster-autoscaler -nray
-export RAY_HEAD_POD=$(kubectl get pod -o name -l ray.io/node-type=head -nray)
-kubectl expose svc raycluster-autoscaler-head-svc --port 8265 --target-port 8265 --name raycluster-svc -n ray
-kubectl expose $RAY_HEAD_POD --type LoadBalancer --port 10001 --target-port 10001 --name raycluster-head-svc -n ray
+# export RAY_HEAD_POD=$(kubectl get pod -o name -l ray.io/node-type=head -nray)
+# kubectl expose svc raycluster-autoscaler-head-svc --port 8265 --target-port 8265 --name raycluster-svc -n ray
+# kubectl expose $RAY_HEAD_POD --type LoadBalancer --port 10001 --target-port 10001 --name raycluster-head-svc -n ray
 export RAY_BASE_URL=tanzudatadev.ml
 envsubst < resources/ray-cluster-http-proxy.in.yaml > resources/ray-cluster-http-proxy.yaml
 kubectl apply -f resources/ray-cluster-http-proxy.yaml
+export RAY_ADDRESS=ray://$(kubectl get svc raycluster-autoscaler-head-svc -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' -nray):10001
 ```
 
 * To undeploy Ray cluster:
